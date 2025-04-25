@@ -1,11 +1,11 @@
 
 ![](image.jpg)
 
-# Introduction
+## Introduction
 
 Humans not only take debts to manage necessities. A country may also take debt to manage its economy. For example, infrastructure spending is one costly ingredient required for a country's citizens to lead comfortable lives. The World Bank is the organization that provides debt to countries.
 
-## `international_debt` table
+### `international_debt` table
 
 | Column | Definition | Data Type |
 |-|-|-|
@@ -39,7 +39,22 @@ ORDER BY SUM(debt) DESC
 LIMIT 1;
 ```
 
-| country_name | total_debt |
-|--------------|------------|
-|     China    |2.857935e+11|
+| country_name |  total_debt  |
+|--------------|--------------|
+|     China    |285793494734.2|
  
+
+ ### Lowest principal repayment
+
+ ```sql
+SELECT country_name, indicator_name, SUM(debt) AS lowest_repayment
+FROM international_debt
+WHERE indicator_code = 'DT.AMT.DLXF.CD'
+GROUP BY indicator_name,country_name
+ORDER BY sum(debt)
+LIMIT 1;
+ ```
+
+| country_name |                       indicator_name                               |  lowest_repayment  |
+|--------------|--------------------------------------------------------------------|--------------------|
+|  Timor-Leste | Principal repayments on external debt, long-term (AMT, current US$)|       825000       |
