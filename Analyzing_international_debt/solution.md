@@ -25,5 +25,5 @@ FROM international_debt;
 Output:
 
 | total_distinct_countries |
-|--------------------------|
+|---|----------------------|
 | 0 |        124           |
