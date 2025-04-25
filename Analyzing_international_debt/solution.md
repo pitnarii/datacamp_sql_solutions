@@ -22,3 +22,31 @@ Humans not only take debts to manage necessities. A country may also take debt t
 SELECT COUNT(DISTINCT country_name)  AS total_distinct_countries
 FROM international_debt;
 ```
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_distinct_countries</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>124</td>
+    </tr>
+  </tbody>
+</table>
+</div>
