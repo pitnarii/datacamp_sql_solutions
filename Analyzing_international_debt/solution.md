@@ -16,7 +16,7 @@ Humans not only take debts to manage necessities. A country may also take debt t
 |debt|Value of the debt indicator for the given country (in current US dollars)|`float`|
 
 
-## Total number of distinct countries
+### Total number of distinct countries
 
 ```sql
 SELECT COUNT(DISTINCT country_name)  AS total_distinct_countries
@@ -27,3 +27,19 @@ Output:
 | total_distinct_countries |
 |--------------------------|
 |         124              |
+
+
+### Highest debt country
+
+```sql
+SELECT country_name,SUM(debt) AS total_debt 
+FROM international_debt
+GROUP BY country_name
+ORDER BY SUM(debt) DESC
+LIMIT 1;
+```
+
+| country_name | total_debt |
+|--------------|------------|
+|     China    |2.857935e+11|
+ 
