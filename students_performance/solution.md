@@ -1,6 +1,3 @@
-
-<img src="exam_result.jpeg" alt="exam_result image" width="49%"/> <img src="examB.png" alt="Lower exam grade image" width="49%"/>
-
 ## Introduction
 
 In today's fast-paced and competitive educational environment, understanding the factors that influence student success is more important than ever. Just like the transport system in a bustling city like London must adapt to serve its residents, schools and educators must adapt to meet the needs of students. In this project, we will take a deep dive into a dataset containing rich details about various aspects of student life, such as hours studied, sleep patterns, attendance, and more, to uncover what truly impacts exam performance.
@@ -29,13 +26,13 @@ WHERE  hours_studied > 10
 GROUP BY hours_studied
 ORDER BY hours_studied DESC;
 
-### Output:
+### Output (first 3 rows):
 
--- | hours_studied | avg_exam_score |
--- |--------------|----------------|
--- | 15           | 88.5           |
--- | 12           | 82.0           |
--- | 11           | 79.3           |
+index | hours_studied | avg_exam_score |
+------|---------------|----------------|
+0     | 43            | 78             |
+1     | 39            | 75             |
+2     | 38            | 73.5           |
 
 2. Is there a sweet spot for study hours? Explore how different ranges of study hours impact exam performance by calculating the average exam score for each study range. Categorize students into four groups based on hours studied per week: 1-5 hours, 6-10 hours, 11-15 hours, and 16+ hours. The output should contain two columns: 1) hours_studied_range and 2) avg_exam_score. Group the results by hours_studied_range and sort them by avg_exam_score in descending order. Save the query as avg_exam_score_by_hours_studied_range.
 -- avg_exam_score_by_hours_studied_range
@@ -52,6 +49,14 @@ FROM student_performance
 GROUP BY hours_studied_range
 ORDER BY avg_exam_score DESC;
 
+### Output (first 3 rows):
+
+index | hours_studied_range | avg_exam_score |
+------|---------------------|----------------|
+0     | 16+ hours           | 67.9233633869  |
+1     | 11-15 hours         | 65.2043859649  |
+2     | 6-10 hours          | 64.2254901961  |
+
 3. A teacher wants to show their students their relative rank in the class, without revealing their exam scores to each other. Use a window function to assign ranks based on exam_score, ensuring that students with the same exam score share the same rank and no ranks are skipped. Return the columns attendance, hours_studied, sleep_hours, tutoring_sessions, and exam_rank. The students with the highest exam score should be at the top of the results, so order your query by exam_rank in ascending order. Limit your query to 30 students.
 
 -- student_exam_ranking
@@ -62,3 +67,97 @@ SELECT attendance, hours_studied, sleep_hours, tutoring_sessions,
 FROM student_performance
 ORDER BY exam_rank ASC
 LIMIT 30;
+
+### Output:
+
+--
+ 
+student_exam_ranking
+|
+ 
+attendance | hours_studied | sleep_hours | tutoring_sessions | exam_rank |
+-- Add solution code below 
+|------------|---------------|-------------|-------------------|-----------|
+SELECT
+     
+attendance,
+     
+hours_studied,
+      
+sleep_hours,
+       
+tutoring_sessions,
+|
+     
+95
+     
+|
+      
+10
+       
+|      8      |         2         |     1     |
+     
+DENSE_RANK()
+     
+OVER
+       
+(ORDER
+       
+BY
+      
+exam_score
+      
+DESC)
+         
+AS
+         
+exam_rank
+|
+     
+90
+     
+|
+       
+9
+       
+|
+      
+7
+      
+|
+         
+1
+         
+|     2     |
+FROM
+     
+student_performance
+|
+     
+92     |       8       |      8      |         2         |     3     |
+ORDER
+     
+BY
+     
+exam_rank
+       
+ASC
+|
+     
+88
+     
+|
+       
+7       |      6      |         0         |     4     |
+LIMIT
+     
+30;
+|
+     
+85     |       6       |      7      |         1         |     5     |
+|     80     |       5       |      6      |         0         |     6     |
+|     78     |       4       |      5      |         0         |     7     |
+|     75     |       3       |      6      |         1         |     8     |
+|     70     |       2       |      5      |         0         |     9     |
+|     68     |       1       |      4      |         0         |    10     |
+|    ...     |      ...      |     ...     |        ...        |    ...    |
