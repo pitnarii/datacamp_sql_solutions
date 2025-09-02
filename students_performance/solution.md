@@ -68,96 +68,11 @@ FROM student_performance
 ORDER BY exam_rank ASC
 LIMIT 30;
 
-### Output:
+### Output (first 3 rows):
 
---
- 
-student_exam_ranking
-|
- 
-attendance | hours_studied | sleep_hours | tutoring_sessions | exam_rank |
--- Add solution code below 
-|------------|---------------|-------------|-------------------|-----------|
-SELECT
-     
-attendance,
-     
-hours_studied,
-      
-sleep_hours,
-       
-tutoring_sessions,
-|
-     
-95
-     
-|
-      
-10
-       
-|      8      |         2         |     1     |
-     
-DENSE_RANK()
-     
-OVER
-       
-(ORDER
-       
-BY
-      
-exam_score
-      
-DESC)
-         
-AS
-         
-exam_rank
-|
-     
-90
-     
-|
-       
-9
-       
-|
-      
-7
-      
-|
-         
-1
-         
-|     2     |
-FROM
-     
-student_performance
-|
-     
-92     |       8       |      8      |         2         |     3     |
-ORDER
-     
-BY
-     
-exam_rank
-       
-ASC
-|
-     
-88
-     
-|
-       
-7       |      6      |         0         |     4     |
-LIMIT
-     
-30;
-|
-     
-85     |       6       |      7      |         1         |     5     |
-|     80     |       5       |      6      |         0         |     6     |
-|     78     |       4       |      5      |         0         |     7     |
-|     75     |       3       |      6      |         1         |     8     |
-|     70     |       2       |      5      |         0         |     9     |
-|     68     |       1       |      4      |         0         |    10     |
-|    ...     |      ...      |     ...     |        ...        |    ...    |
+index |attendance | hours_studied | sleep_hours | tutoring_sessions | exam_rank |
+------|-----------|---------------|-------------|-------------------|-----------|
+0     |    98     |      27       |      6      |         5         |     1     |
+1     |    89     |      18       |      4      |         3         |     2     |
+2     |    90     |      14       |      8      |         4         |     3     |
+
